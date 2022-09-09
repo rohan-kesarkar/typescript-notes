@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { NoteType } from './Models/note.model';
+import  Header from './Components/Header'
+import NoteList from './Components/NotesList';
+import { Container, Row, Col } from 'react-bootstrap';
+import CreateNote from './Components/CreateNotes';
+
+// const noteObject = {
+//   id:(new Date).toString(),
+//   title:"Meeting",
+//   text:"Sheduled for discussion",
+//   color:"#dfdfdf",
+//   date:(new Date).toString()
+// }
 
 function App() {
+const [note, setNote] = useState<NoteType[]>([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+  <Header/>
+  <Container className='mt-5'>
+    <Row>
+      <Col>
+      <NoteList notes={note} setNote={setNote} />
+      </Col>
+   </Row>
+   <Row>
+      <Col>
+      <CreateNote notes={note} setNote={setNote}  />
+      </Col>
+   </Row>
+  </Container>
+  </>
   );
 }
 
